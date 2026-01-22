@@ -1,0 +1,33 @@
+<div class="event-detail-container" *ngIf="event">
+  <button [routerLink]="['/events']" class="btn-back">← Back to Events</button>
+  
+  <div class="event-header">
+    <h1>{{ event.name }}</h1>
+    <p class="event-meta">{{ event.date | date: 'MMMM dd, yyyy' }} | {{ event.location }}</p>
+  </div>
+
+  <div class="event-content">
+    <div class="event-description">
+      <h2>About This Event</h2>
+      <p>{{ event.description }}</p>
+    </div>
+
+    <div class="event-info">
+      <div class="info-card">
+        <h3>Event Price</h3>
+        <p class="price">${{ event.price }}</p>
+      </div>
+      <div class="info-card">
+        <h3>Capacity</h3>
+        <p>{{ event.attendees }} / {{ event.capacity }} Attendees</p>
+        <div class="progress-bar">
+          <div class="progress" [style.width.%]="(event.attendees / event.capacity) * 100"></div>
+        </div>
+      </div>
+    </div>
+
+    <button [routerLink]="['/booking', event.id]" class="btn-book">
+      Book Now
+    </button>
+  </div>
+</div>

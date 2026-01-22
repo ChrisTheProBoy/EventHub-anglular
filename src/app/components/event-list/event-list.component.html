@@ -1,0 +1,13 @@
+<div class="event-list-container">
+  <h1>Events</h1>
+  <div class="events-grid">
+    <div *ngFor="let event of events" class="event-card">
+      <h2>{{ event.name }}</h2>
+      <p><strong>Date:</strong> {{ event.date | date: 'MMM dd, yyyy' }}</p>
+      <p><strong>Location:</strong> {{ event.location }}</p>
+      <button [routerLink]="['/event', event.id]" class="btn-details">
+        View Details
+      </button>
+    </div>
+  </div>
+</div>

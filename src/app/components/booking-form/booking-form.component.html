@@ -1,0 +1,106 @@
+<div class="booking-form-container">
+  <button [routerLink]="['/event', eventId]" class="btn-back">← Back to Event</button>
+
+  <h1>Book Your Ticket</h1>
+
+  <form [formGroup]="bookingForm" (ngSubmit)="submitBooking()">
+    <div class="form-section">
+      <h2>Personal Information</h2>
+
+      <div class="form-group">
+        <label for="firstName">First Name *</label>
+        <input
+          type="text"
+          id="firstName"
+          formControlName="firstName"
+          class="form-control"
+          [class.is-invalid]="isSubmitted && f['firstName'].errors"
+        />
+        <div class="invalid-feedback" *ngIf="isSubmitted && f['firstName'].errors">
+          First name is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Last Name *</label>
+        <input
+          type="text"
+          id="lastName"
+          formControlName="lastName"
+          class="form-control"
+          [class.is-invalid]="isSubmitted && f['lastName'].errors"
+        />
+        <div class="invalid-feedback" *ngIf="isSubmitted && f['lastName'].errors">
+          Last name is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email *</label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          class="form-control"
+          [class.is-invalid]="isSubmitted && f['email'].errors"
+        />
+        <div class="invalid-feedback" *ngIf="isSubmitted && f['email'].errors">
+          <span *ngIf="f['email'].errors['required']">Email is required</span>
+          <span *ngIf="f['email'].errors['email']">Please enter a valid email</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone Number *</label>
+        <input
+          type="tel"
+          id="phone"
+          formControlName="phone"
+          class="form-control"
+          [class.is-invalid]="isSubmitted && f['phone'].errors"
+        />
+        <div class="invalid-feedback" *ngIf="isSubmitted && f['phone'].errors">
+          Phone number is required
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h2>Booking Details</h2>
+
+      <div class="form-group">
+        <label for="numberOfTickets">Number of Tickets *</label>
+        <select
+          id="numberOfTickets"
+          formControlName="numberOfTickets"
+          class="form-control"
+          [class.is-invalid]="isSubmitted && f['numberOfTickets'].errors"
+        >
+          <option value="1">1 Ticket</option>
+          <option value="2">2 Tickets</option>
+          <option value="3">3 Tickets</option>
+          <option value="4">4 Tickets</option>
+          <option value="5">5 Tickets</option>
+          <option value="6">6 Tickets</option>
+          <option value="7">7 Tickets</option>
+          <option value="8">8 Tickets</option>
+          <option value="9">9 Tickets</option>
+          <option value="10">10 Tickets</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="specialRequirements">Special Requirements</label>
+        <textarea
+          id="specialRequirements"
+          formControlName="specialRequirements"
+          class="form-control"
+          rows="4"
+          placeholder="Any special needs or requests?"
+        ></textarea>
+      </div>
+    </div>
+
+    <button type="submit" class="btn-submit">Complete Booking</button>
+  </form>
+</div>

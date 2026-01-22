@@ -1,0 +1,26 @@
+<nav class="navbar">
+  <div class="navbar-container">
+    <div class="navbar-brand">
+      <a routerLink="/" class="brand-link">{{ title }}</a>
+    </div>
+
+    <button class="menu-toggle" (click)="toggleMenu()" [class.active]="isMenuOpen">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <ul class="nav-menu" [class.active]="isMenuOpen">
+      <li class="nav-item">
+        <a routerLink="/events" routerLinkActive="active" (click)="closeMenu()" class="nav-link">
+          Events
+        </a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/bookings" routerLinkActive="active" (click)="closeMenu()" class="nav-link">
+          My Bookings
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

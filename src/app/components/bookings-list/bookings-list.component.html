@@ -1,0 +1,47 @@
+<div class="bookings-list-container">
+  <h1>My Bookings</h1>
+
+  <div *ngIf="bookings.length === 0" class="empty-state">
+    <p>You haven't made any bookings yet.</p>
+    <button [routerLink]="['/events']" class="btn-browse">Browse Events</button>
+  </div>
+
+  <div *ngIf="bookings.length > 0" class="bookings-table-wrapper">
+    <table class="bookings-table">
+      <thead>
+        <tr>
+          <th>Event Name</th>
+          <th>Event Date</th>
+          <th>Booked On</th>
+          <th>Tickets</th>
+          <th>Total Price</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let booking of bookings">
+          <td class="event-name">{{ booking.eventName }}</td>
+          <td>{{ booking.eventDate | date: 'MMM dd, yyyy' }}</td>
+          <td>{{ booking.bookingDate | date: 'MMM dd, yyyy' }}</td>
+          <td class="text-center">{{ booking.numberOfTickets }}</td>
+          <td class="price">${{ booking.totalPrice.toFixed(2) }}</td>
+          <td>
+            <span class="status" [ngClass]="'status-' + booking.status">
+              {{ booking.status | titlecase }}
+            </span>
+          </td>
+          <td>
+            <button
+              (click)="cancelBooking(booking.id)"
+              class="btn-cancel"
+              [disabled]="booking.status === 'cancelled'"
+            >
+              Cancel
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
