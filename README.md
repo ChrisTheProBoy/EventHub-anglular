@@ -174,6 +174,5 @@ The app uses mock authentication — **any email + a password of 6 or more chara
 ---
 
 
----
 
 <p align="center">Made with ❤️ using Angular 20 & Angular Material</p>
