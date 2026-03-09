@@ -1,0 +1,823 @@
+{
+    "events": [
+        {
+            "id": "1",
+            "name": "Tech Innovators Summit 2026",
+            "category": "Technology",
+            "date": "2026-04-15",
+            "endDate": "2026-04-17",
+            "location": "San Francisco, CA",
+            "venue": "Moscone Center",
+            "description": "The premier technology conference bringing together the brightest minds in AI, cloud computing, and web development.",
+            "longDescription": "Join thousands of technology leaders, entrepreneurs, and developers at the Tech Innovators Summit 2026. Experience three days of keynote presentations, hands-on workshops, networking sessions, and exhibitions from the world's top technology companies. Topics include artificial intelligence, machine learning, cloud architecture, cybersecurity, blockchain, and emerging technologies shaping the future.",
+            "price": 299.99,
+            "capacity": 2000,
+            "attendees": 1850,
+            "tags": [
+                "AI",
+                "Cloud",
+                "Web Dev",
+                "Networking"
+            ],
+            "isFeatured": true,
+            "isSoldOut": false,
+            "imageUrl": "assets/images/tech-summit.jpg",
+            "speakers": [
+                {
+                    "name": "Dr. Sarah Chen",
+                    "title": "Chief AI Officer",
+                    "company": "TechCorp Global",
+                    "bio": "Pioneering researcher in applied machine learning with 20+ years of experience."
+                },
+                {
+                    "name": "Marcus Johnson",
+                    "title": "VP Engineering",
+                    "company": "CloudScale Inc",
+                    "bio": "Architect of cloud systems serving billions of requests daily."
+                },
+                {
+                    "name": "Priya Patel",
+                    "title": "Founder & CEO",
+                    "company": "DevFuture Labs",
+                    "bio": "Serial entrepreneur and advocate for open-source technology."
+                }
+            ],
+            "schedule": [
+                {
+                    "time": "09:00 AM",
+                    "title": "Opening Keynote",
+                    "speaker": "Dr. Sarah Chen",
+                    "room": "Main Hall",
+                    "type": "keynote"
+                },
+                {
+                    "time": "11:00 AM",
+                    "title": "AI in Production: Real-World Challenges",
+                    "speaker": "Marcus Johnson",
+                    "room": "Hall A",
+                    "type": "talk"
+                },
+                {
+                    "time": "01:00 PM",
+                    "title": "Lunch & Networking",
+                    "room": "Exhibition Floor",
+                    "type": "networking"
+                },
+                {
+                    "time": "02:30 PM",
+                    "title": "Hands-on Cloud Workshop",
+                    "speaker": "Marcus Johnson",
+                    "room": "Workshop 1",
+                    "type": "workshop"
+                },
+                {
+                    "time": "05:00 PM",
+                    "title": "Startup Pitch Competition",
+                    "speaker": "Priya Patel",
+                    "room": "Main Hall",
+                    "type": "talk"
+                }
+            ],
+            "organizerName": "TechHub Events",
+            "organizerEmail": "events@techhub.com"
+        },
+        {
+            "id": "2",
+            "name": "Globo Music Festival",
+            "category": "Music",
+            "date": "2026-05-22",
+            "endDate": "2026-05-24",
+            "location": "Austin, TX",
+            "venue": "Zilker Park",
+            "description": "Three days of live music featuring 50+ artists across 5 stages. The ultimate outdoor music experience.",
+            "longDescription": "Globo Music Festival returns to Austin with its biggest lineup yet! Experience three unforgettable days featuring indie rock, electronic, jazz, hip-hop, and world music across five live stages. The festival also features food vendors, art installations, and immersive experiences that make it more than just a concert—it's a cultural phenomenon.",
+            "price": 149.99,
+            "capacity": 10000,
+            "attendees": 10000,
+            "tags": [
+                "Music",
+                "Festival",
+                "Outdoor",
+                "Live"
+            ],
+            "isFeatured": true,
+            "isSoldOut": true,
+            "imageUrl": "assets/images/music-fest.jpg",
+            "speakers": [
+                {
+                    "name": "Luna Rivers",
+                    "title": "Headliner",
+                    "company": "Independent",
+                    "bio": "Grammy-winning artist known for genre-blending performances."
+                },
+                {
+                    "name": "The Static Wave",
+                    "title": "Featured Band",
+                    "company": "Sound Republic",
+                    "bio": "Indie rock quartet with three platinum albums."
+                }
+            ],
+            "schedule": [
+                {
+                    "time": "12:00 PM",
+                    "title": "Gates Open",
+                    "room": "Main Entrance",
+                    "type": "networking"
+                },
+                {
+                    "time": "02:00 PM",
+                    "title": "The Static Wave",
+                    "speaker": "The Static Wave",
+                    "room": "Stage B",
+                    "type": "keynote"
+                },
+                {
+                    "time": "05:00 PM",
+                    "title": "DJ Set & Dance",
+                    "room": "Electronic Stage",
+                    "type": "talk"
+                },
+                {
+                    "time": "08:00 PM",
+                    "title": "Luna Rivers – Headliner",
+                    "speaker": "Luna Rivers",
+                    "room": "Main Stage",
+                    "type": "keynote"
+                }
+            ],
+            "organizerName": "Globo Events",
+            "organizerEmail": "info@globofestival.com"
+        },
+        {
+            "id": "3",
+            "name": "Modern Art Expo 2026",
+            "category": "Art",
+            "date": "2026-06-05",
+            "endDate": "2026-06-07",
+            "location": "New York, NY",
+            "venue": "MoMA PS1",
+            "description": "Discover groundbreaking contemporary art from 200+ international artists. Installations, sculptures, digital art, and more.",
+            "longDescription": "The Modern Art Expo 2026 is a landmark event showcasing the most innovative works in contemporary art. Featuring installations, sculptures, digital and NFT art, and performance pieces from over 200 international artists, this three-day expo challenges perceptions and celebrates creativity without boundaries. Guided tours, artist meet-and-greets, and workshops are included with admission.",
+            "price": 49.99,
+            "capacity": 800,
+            "attendees": 520,
+            "tags": [
+                "Art",
+                "Contemporary",
+                "Digital",
+                "Culture"
+            ],
+            "isFeatured": false,
+            "isSoldOut": false,
+            "imageUrl": "assets/images/art-expo.jpg",
+            "speakers": [
+                {
+                    "name": "Isabella Torres",
+                    "title": "Curator",
+                    "company": "MoMA PS1",
+                    "bio": "Award-winning curator specializing in digital and immersive art."
+                },
+                {
+                    "name": "Kenji Yamamoto",
+                    "title": "Digital Artist",
+                    "company": "Studio KY",
+                    "bio": "Pioneer of NFT art with works sold across 40 countries."
+                }
+            ],
+            "schedule": [
+                {
+                    "time": "10:00 AM",
+                    "title": "Exhibition Opens",
+                    "room": "All Galleries",
+                    "type": "networking"
+                },
+                {
+                    "time": "11:30 AM",
+                    "title": "Curator's Tour",
+                    "speaker": "Isabella Torres",
+                    "room": "Gallery 1",
+                    "type": "talk"
+                },
+                {
+                    "time": "02:00 PM",
+                    "title": "Digital Art Workshop",
+                    "speaker": "Kenji Yamamoto",
+                    "room": "Studio Lab",
+                    "type": "workshop"
+                },
+                {
+                    "time": "04:00 PM",
+                    "title": "Artist Q&A Panel",
+                    "room": "Auditorium",
+                    "type": "talk"
+                }
+            ],
+            "organizerName": "Art World Events",
+            "organizerEmail": "contact@artexpo.com"
+        },
+        {
+            "id": "4",
+            "name": "Startup Growth Conference",
+            "category": "Business",
+            "date": "2026-03-28",
+            "endDate": "2026-03-29",
+            "location": "Chicago, IL",
+            "venue": "Hyatt Regency Chicago",
+            "description": "Two days of intensive business strategy, venture capital pitches, and networking for startup founders.",
+            "longDescription": "The Startup Growth Conference accelerates early-stage companies with actionable insights from successful founders, investors, and mentors. Sessions cover fundraising, product-market fit, growth hacking, scaling operations, and building resilient teams. Attendees gain access to an exclusive investor meeting platform and a curated mentor sessions library.",
+            "price": 199.99,
+            "capacity": 600,
+            "attendees": 480,
+            "tags": [
+                "Startup",
+                "Investment",
+                "Growth",
+                "Networking"
+            ],
+            "isFeatured": true,
+            "isSoldOut": false,
+            "imageUrl": "assets/images/startup-conf.jpg",
+            "speakers": [
+                {
+                    "name": "Ryan O'Brien",
+                    "title": "Managing Partner",
+                    "company": "Apex Ventures",
+                    "bio": "Led investments in 30+ successful startups including three unicorns."
+                },
+                {
+                    "name": "Aisha Nkosi",
+                    "title": "CEO",
+                    "company": "ScaleUp Africa",
+                    "bio": "Built a continent-spanning edtech platform from a single idea."
+                }
+            ],
+            "schedule": [
+                {
+                    "time": "08:30 AM",
+                    "title": "Registration & Breakfast",
+                    "room": "Lobby",
+                    "type": "networking"
+                },
+                {
+                    "time": "09:30 AM",
+                    "title": "Opening: The State of Startups 2026",
+                    "speaker": "Ryan O'Brien",
+                    "room": "Ballroom A",
+                    "type": "keynote"
+                },
+                {
+                    "time": "11:00 AM",
+                    "title": "Fundraising Masterclass",
+                    "speaker": "Ryan O'Brien",
+                    "room": "Room 201",
+                    "type": "workshop"
+                },
+                {
+                    "time": "02:00 PM",
+                    "title": "Global Expansion Strategies",
+                    "speaker": "Aisha Nkosi",
+                    "room": "Ballroom A",
+                    "type": "talk"
+                },
+                {
+                    "time": "04:30 PM",
+                    "title": "Investor Speed Dating",
+                    "room": "Exhibition Hall",
+                    "type": "networking"
+                }
+            ],
+            "organizerName": "Startup Alliance",
+            "organizerEmail": "hello@startupallianceevents.com"
+        },
+        {
+            "id": "5",
+            "name": "City Marathon & Fun Run",
+            "category": "Sports",
+            "date": "2026-04-05",
+            "location": "Boston, MA",
+            "venue": "Boston Common Start Line",
+            "description": "Annual city marathon with 5K, 10K, half-marathon, and full marathon categories. All levels welcome.",
+            "longDescription": "The City Marathon & Fun Run invites athletes and casual runners alike to experience the thrill of Boston's iconic streets. Choose your category—5K Fun Run, 10K, Half-Marathon, or Full Marathon—and compete among thousands of participants. Post-race celebrations include live music, food trucks, medals, and an awards ceremony. Register early, as spots fill up fast!",
+            "price": 39.99,
+            "capacity": 5000,
+            "attendees": 4200,
+            "tags": [
+                "Running",
+                "Sports",
+                "Fitness",
+                "Community"
+            ],
+            "isFeatured": false,
+            "isSoldOut": false,
+            "imageUrl": "assets/images/marathon.jpg",
+            "speakers": [
+                {
+                    "name": "Coach Lee Park",
+                    "title": "Head Coach",
+                    "company": "Boston Athletics",
+                    "bio": "Former Olympian and marathon training specialist."
+                }
+            ],
+            "schedule": [
+                {
+                    "time": "06:00 AM",
+                    "title": "Full Marathon Start",
+                    "room": "Start Line",
+                    "type": "keynote"
+                },
+                {
+                    "time": "06:30 AM",
+                    "title": "Half-Marathon Start",
+                    "room": "Start Line",
+                    "type": "keynote"
+                },
+                {
+                    "time": "07:00 AM",
+                    "title": "10K Start",
+                    "room": "Start Line",
+                    "type": "keynote"
+                },
+                {
+                    "time": "08:00 AM",
+                    "title": "5K Fun Run Start",
+                    "room": "Start Line",
+                    "type": "keynote"
+                },
+                {
+                    "time": "12:00 PM",
+                    "title": "Awards & Celebrations",
+                    "room": "Finish Line Stage",
+                    "type": "networking"
+                }
+            ],
+            "organizerName": "Boston Sports Events",
+            "organizerEmail": "run@bostonsports.org"
+        },
+        {
+            "id": "6",
+            "name": "UX & Design Week",
+            "category": "Technology",
+            "date": "2026-07-12",
+            "endDate": "2026-07-16",
+            "location": "Seattle, WA",
+            "venue": "Seattle Convention Center",
+            "description": "A week-long celebration of UX design, product thinking, and human-centered technology.",
+            "longDescription": "UX & Design Week is the world's most immersive design event, featuring 5 days of workshops, talks, critiques, and portfolio reviews. Topics include interaction design, accessibility, design systems, mobile UX, and AI-assisted design tools. Whether you're a junior designer or a seasoned design director, you'll leave with fresh perspectives and tangible skills.",
+            "price": 249.99,
+            "capacity": 1200,
+            "attendees": 700,
+            "tags": [
+                "UX",
+                "Design",
+                "Product",
+                "Accessibility"
+            ],
+            "isFeatured": false,
+            "isSoldOut": false,
+            "imageUrl": "assets/images/ux-week.jpg",
+            "speakers": [
+                {
+                    "name": "Sofia Lindqvist",
+                    "title": "Principal Designer",
+                    "company": "DesignLab",
+                    "bio": "Author of 'Systems Thinking in UX' and frequent conference speaker."
+                },
+                {
+                    "name": "David Park",
+                    "title": "Head of Product Design",
+                    "company": "Pixel Co.",
+                    "bio": "Scaled design teams from 3 to 120 across multiple continents."
+                }
+            ],
+            "schedule": [
+                {
+                    "time": "09:00 AM",
+                    "title": "Welcome & Intro to Design Thinking",
+                    "speaker": "Sofia Lindqvist",
+                    "room": "Main Hall",
+                    "type": "keynote"
+                },
+                {
+                    "time": "11:00 AM",
+                    "title": "Building Design Systems at Scale",
+                    "speaker": "David Park",
+                    "room": "Workshop Room A",
+                    "type": "workshop"
+                },
+                {
+                    "time": "02:00 PM",
+                    "title": "Portfolio Critique Sessions",
+                    "room": "Gallery Room",
+                    "type": "talk"
+                },
+                {
+                    "time": "04:30 PM",
+                    "title": "Happy Hour Networking",
+                    "room": "Rooftop Terrace",
+                    "type": "networking"
+                }
+            ],
+            "organizerName": "CreativeMinds Events",
+            "organizerEmail": "design@creativemindsevents.com"
+        },
+        {
+            "id": "7",
+            "name": "Jazz Under the Stars",
+            "category": "Music",
+            "date": "2026-08-08",
+            "location": "New Orleans, LA",
+            "venue": "Washington Artillery Park",
+            "description": "An enchanting evening of live jazz performances along the banks of the Mississippi River.",
+            "longDescription": "Jazz Under the Stars returns to the heart of New Orleans for an unforgettable evening celebrating the birthplace of jazz. Enjoy world-class performances from legendary jazz musicians and emerging artists, all surrounded by the magical atmosphere of the French Quarter. Food, drinks, and dancing are all part of this one-of-a-kind cultural evening.",
+            "price": 75.00,
+            "capacity": 1500,
+            "attendees": 1100,
+            "tags": [
+                "Jazz",
+                "Music",
+                "Outdoor",
+                "Culture"
+            ],
+            "isFeatured": true,
+            "isSoldOut": false,
+            "imageUrl": "assets/images/jazz-stars.jpg",
+            "speakers": [
+                {
+                    "name": "Miles Beaumont",
+                    "title": "Jazz Maestro",
+                    "company": "NOLA Jazz Co.",
+                    "bio": "40-year career spanning classical jazz to fusion innovation."
+                }
+            ],
+            "schedule": [
+                {
+                    "time": "06:30 PM",
+                    "title": "Doors Open & Cocktail Hour",
+                    "room": "Park Entrance",
+                    "type": "networking"
+                },
+                {
+                    "time": "07:30 PM",
+                    "title": "Opening Act: Jazz Quartet",
+                    "room": "Main Stage",
+                    "type": "talk"
+                },
+                {
+                    "time": "09:00 PM",
+                    "title": "Miles Beaumont – Headliner",
+                    "speaker": "Miles Beaumont",
+                    "room": "Main Stage",
+                    "type": "keynote"
+                },
+                {
+                    "time": "11:00 PM",
+                    "title": "Jam Session & After-Party",
+                    "room": "Side Stage",
+                    "type": "networking"
+                }
+            ],
+            "organizerName": "NOLA Arts Foundation",
+            "organizerEmail": "jazz@nolaarts.org"
+        },
+        {
+            "id": "8",
+            "name": "Blockchain & Web3 Forum",
+            "category": "Technology",
+            "date": "2026-09-19",
+            "endDate": "2026-09-20",
+            "location": "Miami, FL",
+            "venue": "Miami Beach Convention Center",
+            "description": "Deep dive into blockchain infrastructure, DeFi, NFTs, and the evolving world of Web3.",
+            "longDescription": "The Blockchain & Web3 Forum gathers protocol developers, defi builders, enterprise adopters, and investors for two days of cutting-edge discussions. Features include live protocol demos, hackathon finales, regulatory roundtables, and VC pitch sessions focused on early-stage crypto projects.",
+            "price": 179.99,
+            "capacity": 900,
+            "attendees": 650,
+            "tags": [
+                "Blockchain",
+                "Web3",
+                "DeFi",
+                "NFT"
+            ],
+            "isFeatured": false,
+            "isSoldOut": false,
+            "imageUrl": "assets/images/web3-forum.jpg",
+            "speakers": [
+                {
+                    "name": "Alex Nakamura",
+                    "title": "Protocol Architect",
+                    "company": "ChainBuild Labs",
+                    "bio": "Core contributor to three major blockchain protocols."
+                },
+                {
+                    "name": "Elena Volkov",
+                    "title": "DeFi Researcher",
+                    "company": "Decentralized Finance Institute",
+                    "bio": "Published author on tokenomics and liquidity mechanisms."
+                }
+            ],
+            "schedule": [
+                {
+                    "time": "09:00 AM",
+                    "title": "State of Web3",
+                    "speaker": "Alex Nakamura",
+                    "room": "Auditorium A",
+                    "type": "keynote"
+                },
+                {
+                    "time": "11:00 AM",
+                    "title": "DeFi Mechanics Workshop",
+                    "speaker": "Elena Volkov",
+                    "room": "Workshop B",
+                    "type": "workshop"
+                },
+                {
+                    "time": "02:00 PM",
+                    "title": "NFT Market Panel",
+                    "room": "Auditorium A",
+                    "type": "talk"
+                },
+                {
+                    "time": "04:00 PM",
+                    "title": "Hackathon Finals",
+                    "room": "Innovation Lab",
+                    "type": "talk"
+                }
+            ],
+            "organizerName": "Web3 Events Global",
+            "organizerEmail": "forum@web3events.io"
+        },
+        {
+            "id": "9",
+            "name": "Yoga & Wellness Retreat",
+            "category": "Health",
+            "date": "2026-05-10",
+            "endDate": "2026-05-12",
+            "location": "Sedona, AZ",
+            "venue": "Red Rock Wellness Center",
+            "description": "A three-day immersive wellness retreat featuring yoga, meditation, nutrition workshops, and nature hikes.",
+            "longDescription": "Escape to the breathtaking red rock landscapes of Sedona for a transformative wellness retreat. Led by expert instructors, this three-day program includes morning yoga and meditation sessions, nutritional coaching, mindfulness workshops, guided nature hikes, and evening sound healing ceremonies. All meals are plant-based and prepared by wellness chefs. Accommodation is included.",
+            "price": 399.99,
+            "capacity": 60,
+            "attendees": 45,
+            "tags": [
+                "Yoga",
+                "Wellness",
+                "Meditation",
+                "Nature"
+            ],
+            "isFeatured": false,
+            "isSoldOut": false,
+            "imageUrl": "assets/images/wellness.jpg",
+            "speakers": [
+                {
+                    "name": "Ananya Krishnan",
+                    "title": "Senior Yoga Instructor",
+                    "company": "Sedona Wellness",
+                    "bio": "20-year practitioner of Iyengar and Vinyasa yoga traditions."
+                },
+                {
+                    "name": "Dr. Tom Reeves",
+                    "title": "Nutritionist",
+                    "company": "Plant Forward Health",
+                    "bio": "Best-selling author and plant-based nutrition advocate."
+                }
+            ],
+            "schedule": [
+                {
+                    "time": "07:00 AM",
+                    "title": "Sunrise Yoga Session",
+                    "speaker": "Ananya Krishnan",
+                    "room": "Outdoor Deck",
+                    "type": "workshop"
+                },
+                {
+                    "time": "08:30 AM",
+                    "title": "Plant-Based Breakfast",
+                    "room": "Dining Hall",
+                    "type": "break"
+                },
+                {
+                    "time": "10:00 AM",
+                    "title": "Nutrition & Gut Health Workshop",
+                    "speaker": "Dr. Tom Reeves",
+                    "room": "Main Studio",
+                    "type": "talk"
+                },
+                {
+                    "time": "02:00 PM",
+                    "title": "Guided Meditation",
+                    "speaker": "Ananya Krishnan",
+                    "room": "Meditation Garden",
+                    "type": "workshop"
+                },
+                {
+                    "time": "05:30 PM",
+                    "title": "Guided Nature Hike",
+                    "room": "Red Rock Trail",
+                    "type": "networking"
+                }
+            ],
+            "organizerName": "Serenity Events",
+            "organizerEmail": "retreat@serenityevents.com"
+        },
+        {
+            "id": "10",
+            "name": "Basketball 3x3 Street Tournament",
+            "category": "Sports",
+            "date": "2026-06-20",
+            "location": "Los Angeles, CA",
+            "venue": "Venice Beach Courts",
+            "description": "The ultimate street basketball tournament returns to Venice Beach. Register your team and compete for glory.",
+            "longDescription": "Venice Beach is home to the most iconic basketball courts in the world, and the annual 3x3 Street Tournament brings out the best ballers from across California. Teams of 3 compete in bracket-style elimination. Food trucks, DJ sets, and celebrity appearances make this a can't-miss sporting event with serious street culture cred.",
+            "price": 19.99,
+            "capacity": 500,
+            "attendees": 320,
+            "tags": [
+                "Basketball",
+                "Sports",
+                "Street",
+                "Tournament"
+            ],
+            "isFeatured": false,
+            "isSoldOut": false,
+            "imageUrl": "assets/images/basketball.jpg",
+            "speakers": [
+                {
+                    "name": "DJ Phantom",
+                    "title": "DJ",
+                    "company": "Phantom Sound",
+                    "bio": "LA's premier outdoor event DJ and basketball culture enthusiast."
+                }
+            ],
+            "schedule": [
+                {
+                    "time": "09:00 AM",
+                    "title": "Team Registration & Warm-Up",
+                    "room": "Court 1",
+                    "type": "networking"
+                },
+                {
+                    "time": "10:00 AM",
+                    "title": "Group Stage Matches",
+                    "room": "All Courts",
+                    "type": "keynote"
+                },
+                {
+                    "time": "01:00 PM",
+                    "title": "Quarter Finals",
+                    "room": "Main Court",
+                    "type": "keynote"
+                },
+                {
+                    "time": "03:00 PM",
+                    "title": "Semi-Finals & Finals",
+                    "room": "Main Court",
+                    "type": "keynote"
+                },
+                {
+                    "time": "05:00 PM",
+                    "title": "Awards Ceremony & DJ Set",
+                    "speaker": "DJ Phantom",
+                    "room": "Main Court",
+                    "type": "networking"
+                }
+            ],
+            "organizerName": "LA Sports Authority",
+            "organizerEmail": "tournament@lasports.org"
+        },
+        {
+            "id": "11",
+            "name": "Future of Finance Summit",
+            "category": "Business",
+            "date": "2026-10-14",
+            "endDate": "2026-10-15",
+            "location": "New York, NY",
+            "venue": "New York Stock Exchange Conference Center",
+            "description": "Fintech, open banking, digital assets, and the future of payments discussed by global finance leaders.",
+            "longDescription": "The Future of Finance Summit convenes the world's most influential financial innovators under one roof. Sessions address digital currencies, AI in financial services, open banking APIs, embedded finance, and sustainable investing. Keynotes from central bank governors, fintech unicorn CEOs, and Nobel economists make this the definitive finance event of 2026.",
+            "price": 349.99,
+            "capacity": 700,
+            "attendees": 580,
+            "tags": [
+                "Fintech",
+                "Finance",
+                "Digital Banking",
+                "Investment"
+            ],
+            "isFeatured": true,
+            "isSoldOut": false,
+            "imageUrl": "assets/images/finance.jpg",
+            "speakers": [
+                {
+                    "name": "Christine Leblanc",
+                    "title": "Global Fintech Director",
+                    "company": "IMF",
+                    "bio": "Former central bank advisor and fintech regulatory expert."
+                },
+                {
+                    "name": "Jordan Wei",
+                    "title": "Co-Founder",
+                    "company": "PayNext",
+                    "bio": "Built a $2B payment platform serving 40M users."
+                }
+            ],
+            "schedule": [
+                {
+                    "time": "09:00 AM",
+                    "title": "Global Finance Outlook 2026",
+                    "speaker": "Christine Leblanc",
+                    "room": "Main Hall",
+                    "type": "keynote"
+                },
+                {
+                    "time": "11:00 AM",
+                    "title": "Digital Currencies Panel",
+                    "room": "Panel Room A",
+                    "type": "talk"
+                },
+                {
+                    "time": "02:00 PM",
+                    "title": "Embedded Finance Workshop",
+                    "speaker": "Jordan Wei",
+                    "room": "Workshop C",
+                    "type": "workshop"
+                },
+                {
+                    "time": "04:30 PM",
+                    "title": "Investor Networking Cocktail",
+                    "room": "Terrace Lounge",
+                    "type": "networking"
+                }
+            ],
+            "organizerName": "Global Finance Events",
+            "organizerEmail": "summit@globalfinanceevents.com"
+        },
+        {
+            "id": "12",
+            "name": "Indie Game Dev Expo",
+            "category": "Technology",
+            "date": "2026-11-07",
+            "endDate": "2026-11-08",
+            "location": "Portland, OR",
+            "venue": "Oregon Convention Center",
+            "description": "Showcase your indie game, play unreleased titles, and connect with the global game development community.",
+            "longDescription": "The Indie Game Dev Expo is the most celebrated event for independent game developers. Over two days, attendees can play over 100 unreleased indie games, attend talks on game design, narrative writing, monetization, and publishing. The expo hosts a judged showcase where winning teams are awarded publishing deals and presence at major gaming conferences.",
+            "price": 29.99,
+            "capacity": 3000,
+            "attendees": 1800,
+            "tags": [
+                "Gaming",
+                "Indie",
+                "Game Dev",
+                "Creative"
+            ],
+            "isFeatured": false,
+            "isSoldOut": false,
+            "imageUrl": "assets/images/game-expo.jpg",
+            "speakers": [
+                {
+                    "name": "Sam Cooper",
+                    "title": "Indie Developer",
+                    "company": "Pixel Dreams Studio",
+                    "bio": "Created 'Starfall', winner of the Independent Games Festival Award."
+                },
+                {
+                    "name": "Lisa Chen",
+                    "title": "Publishing Director",
+                    "company": "Indie Publisher Alliance",
+                    "bio": "Helped 50+ indie teams bring their games to market."
+                }
+            ],
+            "schedule": [
+                {
+                    "time": "10:00 AM",
+                    "title": "Developer Showcase Opens",
+                    "room": "Expo Hall",
+                    "type": "networking"
+                },
+                {
+                    "time": "12:00 PM",
+                    "title": "Indie Dev Journey: From Idea to Launch",
+                    "speaker": "Sam Cooper",
+                    "room": "Stage A",
+                    "type": "talk"
+                },
+                {
+                    "time": "02:00 PM",
+                    "title": "Publishing & Monetization Workshop",
+                    "speaker": "Lisa Chen",
+                    "room": "Workshop Room",
+                    "type": "workshop"
+                },
+                {
+                    "time": "04:00 PM",
+                    "title": "Awards Ceremony",
+                    "room": "Main Stage",
+                    "type": "keynote"
+                }
+            ],
+            "organizerName": "GameDev Community",
+            "organizerEmail": "expo@gamedevcommunity.org"
+        }
+    ]
+}

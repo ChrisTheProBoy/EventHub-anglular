@@ -1,0 +1,107 @@
+<div class="login-page">
+    <div class="login-container">
+        <div class="login-header">
+            <mat-icon class="login-logo">event</mat-icon>
+            <h1>EventHub</h1>
+            <p>Sign in to book events and manage your tickets</p>
+        </div>
+
+        <mat-card class="login-card">
+            <mat-tab-group dynamicHeight>
+                <!-- LOGIN TAB -->
+                <mat-tab label="Sign In">
+                    <div class="tab-content">
+                        <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+                            <mat-form-field appearance="outline" class="full-width">
+                                <mat-label>Email Address</mat-label>
+                                <mat-icon matPrefix>email</mat-icon>
+                                <input matInput formControlName="email" type="email" placeholder="you@example.com" />
+                                <mat-error *ngIf="lf['email'].errors?.['required']">Email is required</mat-error>
+                                <mat-error *ngIf="lf['email'].errors?.['email']">Enter a valid email</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline" class="full-width">
+                                <mat-label>Password</mat-label>
+                                <mat-icon matPrefix>lock</mat-icon>
+                                <input matInput formControlName="password"
+                                    [type]="hidePassword ? 'password' : 'text'" />
+                                <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword">
+                                    <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                                </button>
+                                <mat-error *ngIf="lf['password'].errors?.['required']">Password is required</mat-error>
+                                <mat-error *ngIf="lf['password'].errors?.['minlength']">Minimum 6 characters</mat-error>
+                            </mat-form-field>
+
+                            <p class="hint-text">💡 Enter any email and password (6+ chars) to sign in with mock auth.
+                            </p>
+
+                            <button mat-flat-button color="primary" type="submit" class="submit-btn"
+                                [disabled]="isLoading">
+                                <mat-spinner diameter="20" *ngIf="isLoading"></mat-spinner>
+                                <span *ngIf="!isLoading"><mat-icon>login</mat-icon> Sign In</span>
+                            </button>
+                        </form>
+                    </div>
+                </mat-tab>
+
+                <!-- REGISTER TAB -->
+                <mat-tab label="Register">
+                    <div class="tab-content">
+                        <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+                            <div class="form-row">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>First Name</mat-label>
+                                    <input matInput formControlName="firstName" />
+                                    <mat-error>Required</mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Last Name</mat-label>
+                                    <input matInput formControlName="lastName" />
+                                    <mat-error>Required</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <mat-form-field appearance="outline" class="full-width">
+                                <mat-label>Email Address</mat-label>
+                                <mat-icon matPrefix>email</mat-icon>
+                                <input matInput formControlName="email" type="email" />
+                                <mat-error *ngIf="rf['email'].errors?.['required']">Email is required</mat-error>
+                                <mat-error *ngIf="rf['email'].errors?.['email']">Enter a valid email</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline" class="full-width">
+                                <mat-label>Phone Number</mat-label>
+                                <mat-icon matPrefix>phone</mat-icon>
+                                <input matInput formControlName="phone" placeholder="+1 555 123 4567" />
+                                <mat-error *ngIf="rf['phone'].errors?.['pattern']">Enter a valid phone
+                                    number</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline" class="full-width">
+                                <mat-label>Password</mat-label>
+                                <mat-icon matPrefix>lock</mat-icon>
+                                <input matInput formControlName="password"
+                                    [type]="hidePassword ? 'password' : 'text'" />
+                                <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword">
+                                    <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                                </button>
+                                <mat-error *ngIf="rf['password'].errors?.['required']">Password is required</mat-error>
+                                <mat-error *ngIf="rf['password'].errors?.['minlength']">Minimum 6 characters</mat-error>
+                            </mat-form-field>
+
+                            <button mat-flat-button color="primary" type="submit" class="submit-btn"
+                                [disabled]="isLoading">
+                                <mat-spinner diameter="20" *ngIf="isLoading"></mat-spinner>
+                                <span *ngIf="!isLoading"><mat-icon>person_add</mat-icon> Create Account</span>
+                            </button>
+                        </form>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </mat-card>
+
+        <div class="back-link">
+            <a routerLink="/events"><mat-icon>arrow_back</mat-icon> Back to Events</a>
+        </div>
+    </div>
+</div>

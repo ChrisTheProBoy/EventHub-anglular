@@ -1,33 +1,122 @@
-<div class="event-detail-container" *ngIf="event">
-  <button [routerLink]="['/events']" class="btn-back">← Back to Events</button>
-  
-  <div class="event-header">
-    <h1>{{ event.name }}</h1>
-    <p class="event-meta">{{ event.date | date: 'MMMM dd, yyyy' }} | {{ event.location }}</p>
+<div class="event-detail-page" *ngIf="event$ | async as event; else loading">
+  <!-- Back Button -->
+  <div class="back-bar">
+    <a mat-button routerLink="/events" class="back-btn">
+      <mat-icon>arrow_back</mat-icon> All Events
+    </a>
   </div>
 
-  <div class="event-content">
-    <div class="event-description">
-      <h2>About This Event</h2>
-      <p>{{ event.description }}</p>
+  <!-- Hero -->
+  <div class="detail-hero" [ngStyle]="{ 'background': getCategoryGradient(event.category) }">
+    <div class="hero-badges">
+      <span class="badge category-badge">{{ event.category }}</span>
+      <span class="badge featured-badge" *ngIf="event.isFeatured">⭐ Featured</span>
+      <span class="badge soldout-badge" *ngIf="event.isSoldOut">SOLD OUT</span>
     </div>
+    <h1 class="event-title">{{ event.name }}</h1>
+    <div class="event-hero-meta">
+      <span><mat-icon>calendar_today</mat-icon> {{ event.date | date:'MMMM dd, yyyy' }}
+        <span *ngIf="event.endDate"> – {{ event.endDate | date:'MMMM dd, yyyy' }}</span>
+      </span>
+      <span><mat-icon>location_on</mat-icon> {{ event.location }}</span>
+      <span *ngIf="event.venue"><mat-icon>domain</mat-icon> {{ event.venue }}</span>
+    </div>
+    <div class="event-hero-price">{{ event.price | currency }}</div>
+  </div>
 
-    <div class="event-info">
-      <div class="info-card">
-        <h3>Event Price</h3>
-        <p class="price">${{ event.price }}</p>
+  <div class="detail-content">
+    <!-- Info Cards Row -->
+    <div class="info-cards-row">
+      <div class="info-card price-card">
+        <mat-icon>local_activity</mat-icon>
+        <div>
+          <span class="info-label">Ticket Price</span>
+          <span class="info-value">{{ event.price | currency }}</span>
+        </div>
       </div>
-      <div class="info-card">
-        <h3>Capacity</h3>
-        <p>{{ event.attendees }} / {{ event.capacity }} Attendees</p>
-        <div class="progress-bar">
-          <div class="progress" [style.width.%]="(event.attendees / event.capacity) * 100"></div>
+      <div class="info-card capacity-card">
+        <mat-icon>people</mat-icon>
+        <div>
+          <span class="info-label">Capacity</span>
+          <span class="info-value">{{ event.attendees }} / {{ event.capacity }}</span>
+        </div>
+      </div>
+      <div class="info-card status-card">
+        <mat-icon>{{ event.isSoldOut ? 'cancel' : 'check_circle' }}</mat-icon>
+        <div>
+          <span class="info-label">Status</span>
+          <span class="info-value" [ngClass]="event.isSoldOut ? 'sold-out' : 'available'">
+            {{ getCapacityStatus(event.attendees, event.capacity) }}
+          </span>
+        </div>
+      </div>
+      <div class="info-card organizer-card" *ngIf="event.organizerName">
+        <mat-icon>person</mat-icon>
+        <div>
+          <span class="info-label">Organizer</span>
+          <span class="info-value">{{ event.organizerName }}</span>
         </div>
       </div>
     </div>
 
-    <button [routerLink]="['/booking', event.id]" class="btn-book">
-      Book Now
-    </button>
+    <!-- Capacity Bar -->
+    <div class="capacity-section">
+      <div class="capacity-header">
+        <span>Seats Filled</span>
+        <span>{{ getCapacityPercent(event.attendees, event.capacity) | number:'1.0-0' }}%</span>
+      </div>
+      <mat-progress-bar mode="determinate" [value]="getCapacityPercent(event.attendees, event.capacity)"
+        [color]="getCapacityPercent(event.attendees, event.capacity) > 90 ? 'warn' : 'primary'">
+      </mat-progress-bar>
+    </div>
+
+    <!-- Tags -->
+    <div class="tags-row">
+      <span class="tag" *ngFor="let tag of event.tags">{{ tag }}</span>
+    </div>
+
+    <!-- Tabs: About / Schedule / Speakers -->
+    <mat-tab-group class="detail-tabs" dynamicHeight [(selectedIndex)]="activeTab">
+      <mat-tab label="About">
+        <div class="tab-panel">
+          <h2>About This Event</h2>
+          <p>{{ event.longDescription || event.description }}</p>
+        </div>
+      </mat-tab>
+      <mat-tab label="Schedule">
+        <div class="tab-panel">
+          <app-event-schedule></app-event-schedule>
+        </div>
+      </mat-tab>
+      <mat-tab label="Speakers">
+        <div class="tab-panel">
+          <app-event-speakers></app-event-speakers>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+
+    <!-- Book Now CTA -->
+    <div class="book-cta">
+      <div class="cta-info" *ngIf="!authService.isLoggedIn()">
+        <mat-icon>info</mat-icon>
+        Please <a routerLink="/login">sign in</a> to book tickets.
+      </div>
+      <button mat-flat-button color="primary" class="book-btn" (click)="bookEvent(event)" [disabled]="event.isSoldOut">
+        <mat-icon>confirmation_number</mat-icon>
+        {{ event.isSoldOut ? 'Sold Out' : ('Book Now – ' + (event.price | currency)) }}
+      </button>
+    </div>
   </div>
 </div>
+
+<!-- Loading -->
+<ng-template #loading>
+  <div class="loading-state">
+    <div class="skeleton-hero"></div>
+    <div class="loading-content">
+      <div class="skeleton-line long"></div>
+      <div class="skeleton-line medium"></div>
+      <div class="skeleton-line short"></div>
+    </div>
+  </div>
+</ng-template>

@@ -1,26 +1,12 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-
-export interface Booking {
-  id: number;
-  eventId: string;
-  eventName: string;
-  eventDate: string;
-  bookingDate: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  numberOfTickets: number;
-  totalPrice: number;
-  specialRequirements?: string;
-  status: string;
-}
+import { Booking, BookingFormData } from '../models/booking.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookingsService {
+  private readonly STORAGE_KEY = 'eventhub_bookings';
   private bookingsSubject = new BehaviorSubject<Booking[]>([]);
   bookings$ = this.bookingsSubject.asObservable();
   private nextId = 1;
@@ -30,49 +16,64 @@ export class BookingsService {
   }
 
   private loadBookingsFromStorage(): void {
-    const stored = localStorage.getItem('bookings');
+    const stored = localStorage.getItem(this.STORAGE_KEY);
     if (stored) {
-      const bookings = JSON.parse(stored);
-      this.nextId = Math.max(...bookings.map((b: Booking) => b.id), 0) + 1;
+      const bookings: Booking[] = JSON.parse(stored);
+      this.nextId = bookings.length > 0 ? Math.max(...bookings.map(b => b.id)) + 1 : 1;
       this.bookingsSubject.next(bookings);
     }
+  }
+
+  private saveBookingsToStorage(bookings: Booking[]): void {
+    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(bookings));
   }
 
   getBookings(): Booking[] {
     return this.bookingsSubject.value;
   }
 
-  addBooking(bookingData: any, eventName: string, eventDate: string, eventPrice: number): void {
+  getBookingsByEmail(email: string): Booking[] {
+    return this.bookingsSubject.value.filter(b => b.email === email);
+  }
+
+  getTotalSpent(): number {
+    return this.bookingsSubject.value.reduce((total, b) => total + b.totalPrice, 0);
+  }
+
+  addBooking(formData: BookingFormData, eventName: string, eventDate: string, eventPrice: number): Booking {
     const newBooking: Booking = {
       id: this.nextId++,
-      eventId: bookingData.eventId,
-      eventName: eventName,
-      eventDate: eventDate,
+      eventId: formData.eventId,
+      eventName,
+      eventDate,
       bookingDate: new Date().toISOString().split('T')[0],
-      firstName: bookingData.firstName,
-      lastName: bookingData.lastName,
-      email: bookingData.email,
-      phone: bookingData.phone,
-      numberOfTickets: bookingData.numberOfTickets,
-      totalPrice: bookingData.numberOfTickets * eventPrice,
-      specialRequirements: bookingData.specialRequirements,
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      phone: formData.phone,
+      numberOfTickets: formData.numberOfTickets,
+      totalPrice: formData.numberOfTickets * eventPrice,
+      specialRequirements: formData.specialRequirements,
       status: 'confirmed'
     };
 
-    const currentBookings = this.bookingsSubject.value;
-    const updatedBookings = [...currentBookings, newBooking];
-    this.bookingsSubject.next(updatedBookings);
-    this.saveBookingsToStorage(updatedBookings);
+    const updated = [...this.bookingsSubject.value, newBooking];
+    this.bookingsSubject.next(updated);
+    this.saveBookingsToStorage(updated);
+    return newBooking;
+  }
+
+  cancelBooking(bookingId: number): void {
+    const updated = this.bookingsSubject.value.map(b =>
+      b.id === bookingId ? { ...b, status: 'cancelled' as const } : b
+    );
+    this.bookingsSubject.next(updated);
+    this.saveBookingsToStorage(updated);
   }
 
   removeBooking(bookingId: number): void {
-    const currentBookings = this.bookingsSubject.value;
-    const updatedBookings = currentBookings.filter(b => b.id !== bookingId);
-    this.bookingsSubject.next(updatedBookings);
-    this.saveBookingsToStorage(updatedBookings);
-  }
-
-  private saveBookingsToStorage(bookings: Booking[]): void {
-    localStorage.setItem('bookings', JSON.stringify(bookings));
+    const updated = this.bookingsSubject.value.filter(b => b.id !== bookingId);
+    this.bookingsSubject.next(updated);
+    this.saveBookingsToStorage(updated);
   }
 }

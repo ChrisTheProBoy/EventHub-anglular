@@ -1,106 +1,145 @@
-<div class="booking-form-container">
-  <button [routerLink]="['/event', eventId]" class="btn-back">← Back to Event</button>
+<div class="booking-page" *ngIf="event$ | async as event; else loading">
+  <!-- Back -->
+  <div class="back-bar">
+    <a mat-button [routerLink]="['/event', event.id]" class="back-btn">
+      <mat-icon>arrow_back</mat-icon> Back to Event
+    </a>
+  </div>
 
-  <h1>Book Your Ticket</h1>
-
-  <form [formGroup]="bookingForm" (ngSubmit)="submitBooking()">
+  <div class="booking-layout">
+    <!-- Left: Form -->
     <div class="form-section">
-      <h2>Personal Information</h2>
-
-      <div class="form-group">
-        <label for="firstName">First Name *</label>
-        <input
-          type="text"
-          id="firstName"
-          formControlName="firstName"
-          class="form-control"
-          [class.is-invalid]="isSubmitted && f['firstName'].errors"
-        />
-        <div class="invalid-feedback" *ngIf="isSubmitted && f['firstName'].errors">
-          First name is required
+      <mat-card class="form-card">
+        <div class="form-header">
+          <mat-icon>confirmation_number</mat-icon>
+          <div>
+            <h1>Book Your Ticket</h1>
+            <p>{{ event.name }}</p>
+          </div>
         </div>
-      </div>
 
-      <div class="form-group">
-        <label for="lastName">Last Name *</label>
-        <input
-          type="text"
-          id="lastName"
-          formControlName="lastName"
-          class="form-control"
-          [class.is-invalid]="isSubmitted && f['lastName'].errors"
-        />
-        <div class="invalid-feedback" *ngIf="isSubmitted && f['lastName'].errors">
-          Last name is required
-        </div>
-      </div>
+        <mat-divider></mat-divider>
 
-      <div class="form-group">
-        <label for="email">Email *</label>
-        <input
-          type="email"
-          id="email"
-          formControlName="email"
-          class="form-control"
-          [class.is-invalid]="isSubmitted && f['email'].errors"
-        />
-        <div class="invalid-feedback" *ngIf="isSubmitted && f['email'].errors">
-          <span *ngIf="f['email'].errors['required']">Email is required</span>
-          <span *ngIf="f['email'].errors['email']">Please enter a valid email</span>
-        </div>
-      </div>
+        <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()" class="booking-form">
+          <!-- Personal Info -->
+          <h2 class="section-heading"><mat-icon>person</mat-icon> Personal Information</h2>
 
-      <div class="form-group">
-        <label for="phone">Phone Number *</label>
-        <input
-          type="tel"
-          id="phone"
-          formControlName="phone"
-          class="form-control"
-          [class.is-invalid]="isSubmitted && f['phone'].errors"
-        />
-        <div class="invalid-feedback" *ngIf="isSubmitted && f['phone'].errors">
-          Phone number is required
-        </div>
-      </div>
+          <div class="form-row">
+            <mat-form-field appearance="outline">
+              <mat-label>First Name</mat-label>
+              <input matInput formControlName="firstName" placeholder="John" />
+              <mat-icon matPrefix>badge</mat-icon>
+              <mat-error *ngIf="f['firstName'].errors?.['required']">First name is required</mat-error>
+              <mat-error *ngIf="f['firstName'].errors?.['minlength']">Minimum 2 characters</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Last Name</mat-label>
+              <input matInput formControlName="lastName" placeholder="Doe" />
+              <mat-icon matPrefix>badge</mat-icon>
+              <mat-error *ngIf="f['lastName'].errors?.['required']">Last name is required</mat-error>
+              <mat-error *ngIf="f['lastName'].errors?.['minlength']">Minimum 2 characters</mat-error>
+            </mat-form-field>
+          </div>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Email Address</mat-label>
+            <mat-icon matPrefix>email</mat-icon>
+            <input matInput formControlName="email" type="email" placeholder="you@example.com" />
+            <mat-error *ngIf="f['email'].errors?.['required']">Email is required</mat-error>
+            <mat-error *ngIf="f['email'].errors?.['pattern']">Enter a valid email address</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Phone Number</mat-label>
+            <mat-icon matPrefix>phone</mat-icon>
+            <input matInput formControlName="phone" placeholder="+1 555 123 4567" />
+            <mat-hint>Format: +1 555 123 4567</mat-hint>
+            <mat-error *ngIf="f['phone'].errors?.['required']">Phone number is required</mat-error>
+            <mat-error *ngIf="f['phone'].errors?.['pattern']">Enter a valid phone number</mat-error>
+          </mat-form-field>
+
+          <!-- Booking Details -->
+          <h2 class="section-heading"><mat-icon>local_activity</mat-icon> Booking Details</h2>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Number of Tickets</mat-label>
+            <mat-icon matPrefix>confirmation_number</mat-icon>
+            <mat-select formControlName="numberOfTickets">
+              <mat-option *ngFor="let n of ticketCounts" [value]="n">
+                {{ n }} {{ n === 1 ? 'Ticket' : 'Tickets' }} – {{ n * event.price | currency }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="f['numberOfTickets'].errors">Select at least 1 ticket (max 10)</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Special Requirements (Optional)</mat-label>
+            <mat-icon matPrefix>notes</mat-icon>
+            <textarea matInput formControlName="specialRequirements" rows="3"
+              placeholder="Dietary needs, accessibility requirements, etc."></textarea>
+          </mat-form-field>
+
+          <!-- Submit -->
+          <button mat-flat-button color="primary" type="submit" class="submit-btn" [disabled]="isSubmitting">
+            <mat-spinner diameter="20" *ngIf="isSubmitting"></mat-spinner>
+            <span *ngIf="!isSubmitting">
+              <mat-icon>check_circle</mat-icon>
+              Confirm Booking – {{ totalPrice | currency }}
+            </span>
+          </button>
+        </form>
+      </mat-card>
     </div>
 
-    <div class="form-section">
-      <h2>Booking Details</h2>
+    <!-- Right: Order Summary -->
+    <div class="summary-section">
+      <mat-card class="summary-card">
+        <div class="summary-header" [ngStyle]="{ 'background': getCategoryGradient(event.category) }">
+          <mat-icon class="summary-icon">{{ getCategoryIcon(event.category) }}</mat-icon>
+          <h3>Order Summary</h3>
+        </div>
 
-      <div class="form-group">
-        <label for="numberOfTickets">Number of Tickets *</label>
-        <select
-          id="numberOfTickets"
-          formControlName="numberOfTickets"
-          class="form-control"
-          [class.is-invalid]="isSubmitted && f['numberOfTickets'].errors"
-        >
-          <option value="1">1 Ticket</option>
-          <option value="2">2 Tickets</option>
-          <option value="3">3 Tickets</option>
-          <option value="4">4 Tickets</option>
-          <option value="5">5 Tickets</option>
-          <option value="6">6 Tickets</option>
-          <option value="7">7 Tickets</option>
-          <option value="8">8 Tickets</option>
-          <option value="9">9 Tickets</option>
-          <option value="10">10 Tickets</option>
-        </select>
-      </div>
+        <div class="summary-body">
+          <h4 class="summary-event-name">{{ event.name }}</h4>
 
-      <div class="form-group">
-        <label for="specialRequirements">Special Requirements</label>
-        <textarea
-          id="specialRequirements"
-          formControlName="specialRequirements"
-          class="form-control"
-          rows="4"
-          placeholder="Any special needs or requests?"
-        ></textarea>
-      </div>
+          <div class="summary-row">
+            <span><mat-icon>calendar_today</mat-icon> Date</span>
+            <strong>{{ event.date | date:'MMM dd, yyyy' }}</strong>
+          </div>
+          <div class="summary-row">
+            <span><mat-icon>location_on</mat-icon> Location</span>
+            <strong>{{ event.location }}</strong>
+          </div>
+          <div class="summary-row">
+            <span><mat-icon>confirmation_number</mat-icon> Tickets</span>
+            <strong>{{ f['numberOfTickets'].value || 1 }}</strong>
+          </div>
+          <div class="summary-row">
+            <span><mat-icon>sell</mat-icon> Price/Ticket</span>
+            <strong>{{ event.price | currency }}</strong>
+          </div>
+
+          <mat-divider class="summary-divider"></mat-divider>
+
+          <div class="summary-total">
+            <span>Total</span>
+            <strong class="total-price">{{ totalPrice | currency }}</strong>
+          </div>
+
+          <div class="summary-secure">
+            <mat-icon>lock</mat-icon> Secure checkout – mock data only
+          </div>
+        </div>
+      </mat-card>
     </div>
-
-    <button type="submit" class="btn-submit">Complete Booking</button>
-  </form>
+  </div>
 </div>
+
+<ng-template #loading>
+  <div class="loading-block">
+    <div class="skeleton-bar"></div>
+    <div class="skeleton-bar medium"></div>
+    <div class="skeleton-bar short"></div>
+  </div>
+</ng-template>

@@ -1,0 +1,25 @@
+<div class="schedule-container" *ngIf="schedule$ | async as schedule">
+    <h3 class="section-title">Event Schedule</h3>
+    <div class="timeline">
+        <div class="timeline-item" *ngFor="let item of schedule">
+            <div class="timeline-time">{{ item.time }}</div>
+            <div class="timeline-dot" [ngStyle]="{ 'background': getTypeColor(item.type) }"></div>
+            <div class="timeline-content">
+                <div class="timeline-type-badge"
+                    [ngStyle]="{ 'background': getTypeColor(item.type) + '20', 'color': getTypeColor(item.type) }">
+                    <mat-icon>{{ getTypeIcon(item.type) }}</mat-icon>
+                    {{ item.type | titlecase }}
+                </div>
+                <h4 class="timeline-title">{{ item.title }}</h4>
+                <div class="timeline-meta" *ngIf="item.speaker || item.room">
+                    <span *ngIf="item.speaker"><mat-icon>person</mat-icon> {{ item.speaker }}</span>
+                    <span *ngIf="item.room"><mat-icon>room</mat-icon> {{ item.room }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="no-schedule" *ngIf="schedule.length === 0">
+        <mat-icon>event_note</mat-icon>
+        <p>Schedule will be announced soon.</p>
+    </div>
+</div>

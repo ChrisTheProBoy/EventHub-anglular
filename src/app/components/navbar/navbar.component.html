@@ -1,26 +1,75 @@
-<nav class="navbar">
-  <div class="navbar-container">
-    <div class="navbar-brand">
-      <a routerLink="/" class="brand-link">{{ title }}</a>
-    </div>
+<mat-toolbar class="navbar-toolbar" color="primary">
+  <div class="navbar-content">
+    <!-- Brand -->
+    <a routerLink="/events" class="brand-link" (click)="closeMenu()">
+      <mat-icon class="brand-icon">event</mat-icon>
+      <span class="brand-text">EventHub</span>
+    </a>
 
-    <button class="menu-toggle" (click)="toggleMenu()" [class.active]="isMenuOpen">
-      <span></span>
-      <span></span>
-      <span></span>
+    <!-- Desktop Links -->
+    <nav class="desktop-nav">
+      <a mat-button routerLink="/events" routerLinkActive="active-link" class="nav-btn">
+        <mat-icon>calendar_today</mat-icon> Events
+      </a>
+      <a mat-button routerLink="/bookings" routerLinkActive="active-link" class="nav-btn"
+         *ngIf="authService.isLoggedIn()">
+        <mat-icon [matBadge]="bookingCount" matBadgeColor="accent" [matBadgeHidden]="bookingCount === 0">
+          bookmark
+        </mat-icon>
+        My Bookings
+      </a>
+    </nav>
+
+    <span class="spacer"></span>
+
+    <!-- Auth Controls -->
+    <ng-container *ngIf="currentUser$ | async as user; else loginBtn">
+      <button mat-button [matMenuTriggerFor]="userMenu" class="user-btn">
+        <mat-icon>account_circle</mat-icon>
+        <span class="user-name">{{ user.firstName }}</span>
+        <mat-icon>arrow_drop_down</mat-icon>
+      </button>
+      <mat-menu #userMenu="matMenu">
+        <button mat-menu-item routerLink="/bookings">
+          <mat-icon>list_alt</mat-icon> My Bookings
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>logout</mat-icon> Logout
+        </button>
+      </mat-menu>
+    </ng-container>
+
+    <ng-template #loginBtn>
+      <a mat-flat-button routerLink="/login" class="login-btn">
+        <mat-icon>login</mat-icon> Login
+      </a>
+    </ng-template>
+
+    <!-- Mobile Menu Toggle -->
+    <button mat-icon-button class="mobile-menu-btn" (click)="toggleMenu()" aria-label="Menu">
+      <mat-icon>{{ isMenuOpen ? 'close' : 'menu' }}</mat-icon>
     </button>
-
-    <ul class="nav-menu" [class.active]="isMenuOpen">
-      <li class="nav-item">
-        <a routerLink="/events" routerLinkActive="active" (click)="closeMenu()" class="nav-link">
-          Events
-        </a>
-      </li>
-      <li class="nav-item">
-        <a routerLink="/bookings" routerLinkActive="active" (click)="closeMenu()" class="nav-link">
-          My Bookings
-        </a>
-      </li>
-    </ul>
   </div>
-</nav>
+</mat-toolbar>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" [class.open]="isMenuOpen">
+  <a routerLink="/events" routerLinkActive="active-link" (click)="closeMenu()" class="mobile-link">
+    <mat-icon>calendar_today</mat-icon> Events
+  </a>
+  <a routerLink="/bookings" routerLinkActive="active-link" (click)="closeMenu()" class="mobile-link"
+     *ngIf="authService.isLoggedIn()">
+    <mat-icon>bookmark</mat-icon> My Bookings
+  </a>
+  <ng-container *ngIf="currentUser$ | async as user; else mobileLogin">
+    <button class="mobile-link mobile-logout" (click)="logout()">
+      <mat-icon>logout</mat-icon> Logout ({{ user.firstName }})
+    </button>
+  </ng-container>
+  <ng-template #mobileLogin>
+    <a routerLink="/login" (click)="closeMenu()" class="mobile-link">
+      <mat-icon>login</mat-icon> Login
+    </a>
+  </ng-template>
+</div>

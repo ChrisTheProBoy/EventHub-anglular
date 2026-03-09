@@ -1,0 +1,18 @@
+<div class="speakers-container" *ngIf="speakers$ | async as speakers">
+    <h3 class="section-title">Speakers</h3>
+    <div class="speakers-grid">
+        <mat-card class="speaker-card" *ngFor="let speaker of speakers">
+            <div class="speaker-avatar">{{ getInitials(speaker.name) }}</div>
+            <mat-card-content>
+                <h4 class="speaker-name">{{ speaker.name }}</h4>
+                <p class="speaker-title">{{ speaker.title }}</p>
+                <p class="speaker-company"><mat-icon>business</mat-icon> {{ speaker.company }}</p>
+                <p class="speaker-bio">{{ speaker.bio }}</p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="no-speakers" *ngIf="speakers.length === 0">
+        <mat-icon>person_off</mat-icon>
+        <p>Speaker information coming soon.</p>
+    </div>
+</div>

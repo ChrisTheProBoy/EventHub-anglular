@@ -1,13 +1,155 @@
-<div class="event-list-container">
-  <h1>Events</h1>
-  <div class="events-grid">
-    <div *ngFor="let event of events" class="event-card">
-      <h2>{{ event.name }}</h2>
-      <p><strong>Date:</strong> {{ event.date | date: 'MMM dd, yyyy' }}</p>
-      <p><strong>Location:</strong> {{ event.location }}</p>
-      <button [routerLink]="['/event', event.id]" class="btn-details">
-        View Details
-      </button>
+<div class="event-list-page">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1 class="hero-title">Discover Amazing Events</h1>
+      <p class="hero-subtitle">Find and book the best events across technology, music, art, business, and sports.</p>
+
+      <!-- Search Bar -->
+      <div class="search-bar">
+        <mat-form-field appearance="outline" class="search-field">
+          <mat-label>Search events...</mat-label>
+          <mat-icon matPrefix>search</mat-icon>
+          <input matInput [(ngModel)]="searchQuery" placeholder="Event name, location, or tag" />
+          <button matSuffix mat-icon-button *ngIf="searchQuery" (click)="searchQuery = ''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
     </div>
+  </section>
+
+  <div class="content-section">
+    <!-- Category Filter Chips -->
+    <div class="filter-row">
+      <div class="category-chips">
+        <button *ngFor="let cat of categories" class="category-chip" [class.active]="selectedCategory === cat"
+          (click)="selectCategory(cat)">
+          {{ cat }}
+        </button>
+      </div>
+
+      <div class="filter-actions">
+        <button mat-stroked-button (click)="toggleFilter()" class="filter-btn">
+          <mat-icon>tune</mat-icon> Filters
+          <span *ngIf="maxPrice < 500 || dateFrom" class="filter-badge">●</span>
+        </button>
+        <button mat-stroked-button (click)="clearFilters()" class="clear-btn"
+          *ngIf="selectedCategory !== 'All' || maxPrice < 500 || searchQuery || dateFrom">
+          <mat-icon>clear_all</mat-icon> Clear
+        </button>
+      </div>
+    </div>
+
+    <!-- Advanced Filter Panel -->
+    <div class="advanced-filters" *ngIf="isFilterOpen">
+      <div class="filter-panel">
+        <div class="filter-item">
+          <label>Max Price: {{ maxPrice | currency }}</label>
+          <input type="range" min="0" max="500" step="10" [(ngModel)]="maxPrice" class="price-range" />
+          <div class="range-labels"><span>$0</span><span>$500</span></div>
+        </div>
+        <div class="filter-item">
+          <label>From Date</label>
+          <input type="date" [(ngModel)]="dateFrom" class="date-input" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Events Loading / Error -->
+    <ng-container *ngIf="events$ | async as allEvents; else loading">
+      <ng-container *ngIf="(allEvents | filterEvents:selectedCategory:maxPrice:searchQuery:dateFrom) as events">
+
+        <!-- Results Header -->
+        <div class="results-header">
+          <span class="results-count">{{ events.length }} event{{ events.length !== 1 ? 's' : '' }} found</span>
+          <div class="legend">
+            <span class="legend-item featured-legend">⭐ Featured</span>
+            <span class="legend-item soldout-legend">🔴 Sold Out</span>
+          </div>
+        </div>
+
+        <!-- No results -->
+        <div class="no-results" *ngIf="events.length === 0">
+          <mat-icon class="no-results-icon">search_off</mat-icon>
+          <h3>No events found</h3>
+          <p>Try adjusting your filters or search query.</p>
+          <button mat-flat-button color="primary" (click)="clearFilters()">Clear Filters</button>
+        </div>
+
+        <!-- Events Grid -->
+        <div class="events-grid">
+          <mat-card *ngFor="let event of events" class="event-card" [appFeaturedEvent]="event.isFeatured"
+            [appSoldOut]="event.isSoldOut"
+            [ngClass]="{ 'featured-card': event.isFeatured, 'soldout-card': event.isSoldOut }">
+
+            <!-- Card Header / Image area -->
+            <div class="card-header" [ngStyle]="{ 'background': getCategoryGradient(event.category) }">
+              <div class="card-badges">
+                <span class="badge category-badge">{{ event.category }}</span>
+                <span class="badge featured-badge" *ngIf="event.isFeatured">⭐ Featured</span>
+                <span class="badge soldout-badge" *ngIf="event.isSoldOut">SOLD OUT</span>
+              </div>
+              <div class="card-icon">
+                <mat-icon>{{ getCategoryIcon(event.category) }}</mat-icon>
+              </div>
+              <div class="card-price">{{ event.price | currency }}</div>
+            </div>
+
+            <mat-card-content class="card-content">
+              <h2 class="event-title">{{ event.name }}</h2>
+
+              <div class="event-meta">
+                <span class="meta-item">
+                  <mat-icon>calendar_today</mat-icon>
+                  {{ event.date | date:'MMM dd, yyyy' }}
+                </span>
+                <span class="meta-item">
+                  <mat-icon>location_on</mat-icon>
+                  {{ event.location }}
+                </span>
+              </div>
+
+              <p class="event-description">{{ event.description }}</p>
+
+              <!-- Tags -->
+              <div class="event-tags">
+                <span *ngFor="let tag of event.tags.slice(0,3)" class="tag">{{ tag }}</span>
+              </div>
+
+              <!-- Capacity Bar -->
+              <div class="capacity-info">
+                <div class="capacity-header">
+                  <span>Capacity</span>
+                  <span>{{ event.attendees }}/{{ event.capacity }}</span>
+                </div>
+                <mat-progress-bar mode="determinate" [value]="getCapacityPercent(event.attendees, event.capacity)"
+                  [ngClass]="getCapacityClass(event.attendees, event.capacity)">
+                </mat-progress-bar>
+              </div>
+            </mat-card-content>
+
+            <mat-card-actions class="card-actions">
+              <a mat-stroked-button [routerLink]="['/event', event.id]" color="primary" class="details-btn">
+                <mat-icon>info</mat-icon> Details
+              </a>
+              <a mat-flat-button [routerLink]="['/booking', event.id]" color="primary" class="book-btn"
+                [disabled]="event.isSoldOut">
+                <mat-icon>confirmation_number</mat-icon>
+                {{ event.isSoldOut ? 'Sold Out' : 'Book Now' }}
+              </a>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+
+      </ng-container>
+    </ng-container>
+
+    <!-- Loading Template -->
+    <ng-template #loading>
+      <div class="loading-grid">
+        <div class="skeleton-card" *ngFor="let i of [1,2,3,4,5,6]"></div>
+      </div>
+    </ng-template>
   </div>
 </div>

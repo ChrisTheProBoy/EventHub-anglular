@@ -1,58 +1,42 @@
 /* ============================
    Global Styles for EventHub
-   Event Management and Booking System
+   Angular Material + Custom Theme
    ============================ */
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
 :root {
-  /* Colors */
-  --primary-color: #667eea;
-  --secondary-color: #764ba2;
-  --danger-color: #dc3545;
-  --success-color: #28a745;
-  --warning-color: #ffc107;
-  --info-color: #17a2b8;
-  
-  --light-bg: #f8f9fa;
-  --border-color: #e0e0e0;
-  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
-  
-  --text-primary: #333;
-  --text-secondary: #666;
-  --text-muted: #999;
-  
-  /* Spacing */
-  --spacing-xs: 0.25rem;
-  --spacing-sm: 0.5rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 1.5rem;
-  --spacing-xl: 2rem;
-  --spacing-2xl: 3rem;
-  
-  /* Border Radius */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
+  --primary: #667eea;
+  --primary-dark: #764ba2;
+  --accent: #43e97b;
+  --warn: #e53935;
+  --success: #43e97b;
+  --warning: #ffc107;
+  --info: #4facfe;
+
+  --bg-light: #f5f7ff;
+  --bg-white: #ffffff;
+  --border: #e0e6ff;
+  --shadow-sm: 0 2px 8px rgba(102, 126, 234, 0.1);
+  --shadow-md: 0 8px 24px rgba(102, 126, 234, 0.15);
+  --shadow-lg: 0 20px 60px rgba(102, 126, 234, 0.2);
+
+  --text-primary: #1a1a2e;
+  --text-secondary: #555;
+  --text-muted: #888;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
   --radius-full: 9999px;
-  
-  /* Font Sizes */
-  --fs-xs: 0.75rem;
-  --fs-sm: 0.875rem;
-  --fs-base: 1rem;
-  --fs-lg: 1.125rem;
-  --fs-xl: 1.25rem;
-  --fs-2xl: 1.5rem;
-  --fs-3xl: 1.875rem;
-  --fs-4xl: 2.25rem;
-  --fs-5xl: 3rem;
-  
-  /* Transitions */
-  --transition-fast: 150ms ease;
-  --transition-base: 300ms ease;
-  --transition-slow: 500ms ease;
+
+  --transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-* {
+/* Reset & Base */
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -60,65 +44,87 @@
 
 html {
   scroll-behavior: smooth;
+  height: 100%;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: var(--fs-base);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 16px;
   line-height: 1.6;
   color: var(--text-primary);
-  background-color: #fff;
+  background-color: var(--bg-light);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding-top: 64px;
+  /* Offset for fixed navbar */
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 600;
-  line-height: 1.2;
-  margin-bottom: var(--spacing-md);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  line-height: 1.25;
   color: var(--text-primary);
+  margin-bottom: 0.5em;
 }
 
 p {
-  margin-bottom: var(--spacing-md);
   color: var(--text-secondary);
+  line-height: 1.7;
 }
 
 a {
-  color: var(--primary-color);
+  color: var(--primary);
   text-decoration: none;
-  transition: color var(--transition-base);
+  transition: color var(--transition);
 }
 
 a:hover {
-  color: var(--secondary-color);
+  color: var(--primary-dark);
 }
 
-button {
-  font-family: inherit;
-  cursor: pointer;
-  border: none;
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Angular Material Overrides */
+.mat-mdc-card {
+  border-radius: var(--radius-lg) !important;
+}
+
+.mat-mdc-raised-button,
+.mat-mdc-flat-button {
+  border-radius: var(--radius-md) !important;
+}
+
+.mat-mdc-outlined-button {
+  border-radius: var(--radius-md) !important;
+}
+
+.mat-mdc-mini-fab {
+  border-radius: 50% !important;
+}
+
+/* Dialog */
+.mat-mdc-dialog-container {
+  border-radius: var(--radius-lg) !important;
+}
+
+/* Snackbar Error */
+.error-snack .mat-mdc-snack-bar-container {
+  background: #c62828;
+  color: white;
   border-radius: var(--radius-md);
-  padding: var(--spacing-sm) var(--spacing-md);
-  font-weight: 500;
-  transition: all var(--transition-base);
 }
 
-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-input, textarea, select {
-  font-family: inherit;
-  font-size: inherit;
-}
-
-/* Scrollbar */
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -126,32 +132,36 @@ input, textarea, select {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--primary-color);
-  border-radius: 5px;
-  transition: background var(--transition-base);
+  background: var(--primary);
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--secondary-color);
+  background: var(--primary-dark);
 }
 
-/* Accessibility */
+/* Focus Visible */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Accessibility: Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
-  * {
+
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 }
 
-/* Print Styles */
+/* Print */
 @media print {
   body {
-    background-color: white;
-  }
-
-  a {
-    text-decoration: underline;
+    background: white;
+    padding: 0;
   }
 
   .no-print {
