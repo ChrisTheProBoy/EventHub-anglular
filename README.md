@@ -173,9 +173,6 @@ The app uses mock authentication — **any email + a password of 6 or more chara
 
 ---
 
-## 📄 License
-
-This project was built as a **CIA (Continuous Internal Assessment)** submission.
 
 ---
 
